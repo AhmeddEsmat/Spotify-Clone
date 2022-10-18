@@ -15,6 +15,9 @@ const scopes = [
   "playlist-read-private",
   "user-library-read",
   "playlist-read-collaborative",
+  "streaming",
+  "user-read-email",
+  "user-read-private",
 ];
 //playback
 export const getTokenFromUrl = () => {

@@ -2,14 +2,15 @@ import React from "react";
 import "./Footer.css";
 import { useState, useEffect } from "react";
 import { useDataLayerValue } from "./DataLayer";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import ShuffleIcon from "@material-ui/icons/Shuffle";
-import RepeatIcon from "@material-ui/icons/Repeat";
-import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import VolumeDownIcon from "@material-ui/icons/VolumeDown";
-import { Grid, Slider } from "@material-ui/core";
+// import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+// import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+// import SkipNextIcon from "@material-ui/icons/SkipNext";
+// import ShuffleIcon from "@material-ui/icons/Shuffle";
+// import RepeatIcon from "@material-ui/icons/Repeat";
+// import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
+// import VolumeDownIcon from "@material-ui/icons/VolumeDown";
+// import { Grid, Slider } from "@material-ui/core";
+import SpotifyPlayer from "react-spotify-web-playback";
 
 const Footer = ({ spotify }) => {
   const [{ token, item, playing }, dispatch] = useDataLayerValue();
@@ -76,7 +77,7 @@ const Footer = ({ spotify }) => {
 
   return (
     <div className="footer">
-      <div className="footer-left">
+      {/* <div className="footer-left">
         <img
           src={item?.album.images[0].url}
           alt={item?.name}
@@ -113,9 +114,21 @@ const Footer = ({ spotify }) => {
         )}
         <SkipNextIcon className="footer-icon" onClick={skipPrevious} />
         <RepeatIcon className="footer-green" />
-      </div>
+      </div> */}
 
-      <div className="footer-right">
+      <SpotifyPlayer
+        className="player"
+        token={token}
+        showSaveIcon
+        callback={(state) => {
+          if (!state.isPlaying)
+            dispatch({ type: "SET_PLAYING", playing: false });
+        }}
+        play={playing}
+        uris={"spotify:playlist:37i9dQZEVXcN57o8Z4p6QG"}
+      />
+
+      {/* <div className="footer-right">
         <Grid container spacing={2}>
           <Grid item>
             <PlaylistPlayIcon />
@@ -127,7 +140,7 @@ const Footer = ({ spotify }) => {
             <Slider aria-labelledby="continuous-slider" />
           </Grid>
         </Grid>
-      </div>
+      </div> */}
     </div>
   );
 };

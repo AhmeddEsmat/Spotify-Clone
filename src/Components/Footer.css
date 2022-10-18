@@ -3,10 +3,15 @@
     justify-content: space-between;
     position: fixed;
     bottom: 0;
-    height: 65px;
-    width: 97%;
+    height: 50px;
+    width: 100%;
     background-color: #282828;
-    padding: 20px;
+    margin-top: 100px;
+    /* padding: 20px; */
+}
+.player {
+    background-color: black;
+    color: #282828;
 }
 .footer-left {
     flex: 0.3;
